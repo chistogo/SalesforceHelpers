@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi Line String Conver</title>
+
+    <style>
+        .col-6{
+            display: block;
+            float: left;
+            width: 50%;
+        }
+
+        textarea{
+            height: 50vh;
+            width: 100%;
+        }
+
+        input,label{
+            -webkit-touch-callout:default;
+            -webkit-user-select: none;
+            -khtml-user-select:  none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;}
+
+
+    </style>
+
+</head>
+<body>
+
+<div class="col-6">
+    <h1>Plain Text</h1>
+    <textarea  id="input"></textarea>
+    <button onclick="convert()" style="float: right;">Convert -></button>
+</div>
+
+<div class="col-6">
+    <h1>Encoded Text</h1>
+    <textarea  id="output"></textarea>
+    <button onclick="unconvert()"><- Convert</button>
+</div>
+
+    <label for="singlequote">Escape Single Quotes</label>
+    <input type="checkbox" id="singlequote"><br>
+
+    <label for="tabs">Escape Tabs</label>
+    <input type="checkbox" id="tabs"><br>
+
+
+<script>
+    function convert() {
+
+        var text = document.getElementById('input').value;
+        if(!text){return}
+        document.getElementById('input').value = '';
+        var regex = /\n/g;
+        text = text.replace(regex,"\\n");
+        var regex = /\r/g;
+        text = text.replace(regex,"\\r");
+        if(document.getElementById('singlequote').value){
+            var regex = /'/g;
+            text = text.replace(regex,"\\'");
+        }
+        if(document.getElementById('tabs').value){
+            var regex = /\t/g;
+            text = text.replace(regex,"\\t");
+        }
+
+
+
+        document.getElementById('output').value = text;
+    }
+
+    function unconvert() {
+        var text = document.getElementById('output').value;
+        if(!text){return}
+        document.getElementById('output').value = '';
+        var regex = /\\n/g;
+        text = text.replace(regex,"\n");
+        var regex = /\\r/g;
+        text = text.replace(regex,"\t");
+        if(document.getElementById('singlequote').value){
+            var regex = /\\'/g;
+            text = text.replace(regex,"'");
+        }
+        if(document.getElementById('tabs').value){
+            var regex = /\\t/g;
+            text = text.replace(regex,"\t");
+        }
+
+        document.getElementById('input').value = text;
+    }
+
+</script>
+
+
+
+</body>
+</html>
