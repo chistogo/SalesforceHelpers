@@ -43,10 +43,10 @@
 </div>
 
     <label for="singlequote">Escape Single Quotes</label>
-    <input type="checkbox" id="singlequote"><br>
+    <input checked type="checkbox" id="singlequote"><br>
 
     <label for="tabs">Escape Tabs</label>
-    <input type="checkbox" id="tabs"><br>
+    <input  type="checkbox" id="tabs"><br>
 
 
 <script>
@@ -59,11 +59,11 @@
         text = text.replace(regex,"\\n");
         var regex = /\r/g;
         text = text.replace(regex,"\\r");
-        if(document.getElementById('singlequote').value){
+        if(document.getElementById('singlequote').checked){
             var regex = /'/g;
             text = text.replace(regex,"\\'");
         }
-        if(document.getElementById('tabs').value){
+        if(document.getElementById('tabs').checked){
             var regex = /\t/g;
             text = text.replace(regex,"\\t");
         }
@@ -81,11 +81,11 @@
         text = text.replace(regex,"\n");
         var regex = /\\r/g;
         text = text.replace(regex,"\t");
-        if(document.getElementById('singlequote').value){
+        if(document.getElementById('singlequote').checked){
             var regex = /\\'/g;
             text = text.replace(regex,"'");
         }
-        if(document.getElementById('tabs').value){
+        if(document.getElementById('tabs').checked){
             var regex = /\\t/g;
             text = text.replace(regex,"\t");
         }
