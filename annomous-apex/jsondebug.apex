@@ -1,3 +1,3 @@
-public static void jsonDebug(SObject obj){
-    System.debug('\n'+JSON.serializePretty(userContact));
+public static void jsonDebug(Object obj){
+    System.debug('\n'+JSON.serializePretty(obj));
 }
